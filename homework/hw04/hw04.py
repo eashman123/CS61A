@@ -157,7 +157,7 @@ def has_seven(k):
     else:
         return has_seven(k // 10)
 
-def count_change(amount):
+def count_change(amount, n=0):
     """Return the number of ways to make change for amount.
 
     >>> count_change(7)
@@ -167,24 +167,15 @@ def count_change(amount):
     >>> count_change(20)
     60
     >>> count_change(100)
-    9828
+		
     """
-    max_exponent=0
-    for i in range(amount):
-        if 2**i<=amount:
-            max_exponent=i
-            continue
-        break
-    def count_partitions(amount, max):
-        if amount==0:
-            return 1
-        elif amount<0:
-            return 0
-        elif max==0:
-            return 0
-        else:
-            return count_partitions(amount-max, max) + count_partitions(amount, max//2)
-    return count_partitions(amount, 2**max_exponent)
+    if amount<0:
+	    return 0
+    if amount==0:
+	    return 1
+    if pow(2,n) > amount:
+	    return 0
+    return count_change(amount-pow(2,n), n)+count_change(amount, n+1)
 
 ###################
 # Extra Questions #

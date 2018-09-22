@@ -39,11 +39,10 @@ def largest_factor(n):
     >>> largest_factor(13) # factor is 1 since 13 is prime
     1
     """
-    factor_list=[]
-    for i in range(n):
-        if n % (i+1) == 0 and n != i+1:
-            factor_list.append(i+1)
-    return max(factor_list)
+    for i in range(n//2, 1):
+        if(n%i==0):
+            return i
+    return 1
 
 def if_function(condition, true_result, false_result):
     """Return true_result if condition is a true value, and
